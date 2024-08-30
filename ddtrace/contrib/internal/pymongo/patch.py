@@ -43,12 +43,12 @@ def patch():
     patch_pymongo_module()
     # We should progressively get rid of TracedMongoClient. We now try to
     # wrap methods individually. cf #1501
-    pymongo.MongoClient = TracedMongoClient
+    pymongo.MongoClient = pymongo.client.MongoClient = TracedMongoClient
 
 
 def unpatch():
     unpatch_pymongo_module()
-    pymongo.MongoClient = _MongoClient
+    pymongo.MongoClient = pymongo.client.MongoClient = _MongoClient
 
 
 def patch_pymongo_module():
